@@ -4,26 +4,18 @@ import bodyParser = require('body-parser')
 import {findUserByUsernameAndPassword} from "./services/user_services"
 import { sessionMiddleware } from './middleware/session'
 import { userRouter } from './routers/user-router'
-import { reimRouter } from './routers/Reim-router'
 import { corsFilter } from './middleware/cors-filter'
 
-
-
 const pro = express()
-pro.use('/',bodyParser.json())
 
+pro.use('/',bodyParser.json())
 pro.use(logMiddleware)
 pro.use(sessionMiddleware)
 pro.use(corsFilter)
-
 pro.use('/users', userRouter)
-pro.use('/reimbursements', reimRouter)
-
 pro.post('/login', async (req,res)=>{
-    
     const {username, password} = req.body
-    
-    if(!username || !password){
+        if(!username || !password){
         res.status(400).send('Please Include Username and Password')
     } else {
         try {
@@ -35,7 +27,6 @@ pro.post('/login', async (req,res)=>{
         }
     }
 })
-
 pro.listen(1111, ()=>{
     console.log('app has started on port 1111');
 })
