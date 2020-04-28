@@ -2,16 +2,13 @@ import { daoFindUserByUsernameAndPassword, daoFindAllUsers, daoSaveOneUser, daoF
 import {  User } from "../models/user"
 import { UserDTO } from "../dtos/UserDTO"
 
-
-
 export async function findUserByUsernameAndPassword(username:string, password:string): Promise<User>
 {
     return daoFindUserByUsernameAndPassword(username,password)
 }
 
-export async function findAllUsers():Promise<User[]>{
-    // I write to a different table, who just sent this request
-    // know what time of day, these requests get most sent
+export async function findAllUsers():Promise<User[]>
+{
     return await daoFindAllUsers()
  }
  
