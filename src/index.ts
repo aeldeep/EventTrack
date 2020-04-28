@@ -5,6 +5,7 @@ import {findUserByUsernameAndPassword} from "./services/user_services"
 import { sessionMiddleware } from './middleware/session'
 import { userRouter } from './routers/user-router'
 import { corsFilter } from './middleware/cors-filter'
+import { eventRouter } from './routers/event-router'
 
 const pro = express()
 
@@ -13,6 +14,8 @@ pro.use(logMiddleware)
 pro.use(sessionMiddleware)
 pro.use(corsFilter)
 pro.use('/users', userRouter)
+pro.use('/event',eventRouter)
+
 pro.post('/login', async (req,res)=>{
     const {username, password} = req.body
         if(!username || !password){
