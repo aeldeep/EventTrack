@@ -103,8 +103,6 @@ userRouter.patch('', auth(['1']), async (req,res)=>
 })
 
 
-// in express we can add a path variable by using a colon in the path
-// this will add it to the request object and the colon makes it match anything
 userRouter.get('/:id', auth(['1', '2', '3']), authId, async (req,res)=>{
     const id = +req.params.id// the plus sign is to type coerce into a number
     if(isNaN(id)){

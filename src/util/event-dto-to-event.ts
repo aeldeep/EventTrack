@@ -3,8 +3,8 @@ import {EventsDTO} from "../dtos/EventsDTO";
 
 export function eventDTOToEventConverter(eventsDTO:EventsDTO):Events
 {
-    console.log(eventsDTO);
-    
+  // console.log('we are in converter');
+   //console.log(eventsDTO);
     return new Events
     (
         eventsDTO.event_id,
@@ -13,8 +13,6 @@ export function eventDTOToEventConverter(eventsDTO:EventsDTO):Events
         timeInWords(eventsDTO.times)
     )
 }
-
-
 
     // time method
     function timeInWords(time) {
@@ -27,7 +25,9 @@ export function eventDTOToEventConverter(eventsDTO:EventsDTO):Events
                      "twenty six", "twenty seven","twenty eight", "twenty nine"]; 
 
  let result = "please enter Time";
- let h=substring(time,0,2)    ,m=+(substring(time,3,5))
+ let h=+substring(time,0,2)    ,m=+(substring(time,3,5))
+//console.log('we are in time function');
+//console.log(h);
 
 if (m == 0) {
       result = words[h] + " o' clock";
@@ -40,10 +40,11 @@ if (m == 0) {
         }else if  (m==1){
             result = "one minute past "+ words[h];
             }else if (m<30){
-            result = words[m] + " minutes past "+ words[h];
+            result = `${words[m]} minutes past ${words[h]};`
         }  else {
-                result = words[60-m]+" minutes to "+words[h+1];
+                result = words[60-m]+" minutes to "+ words[h+1];
             }
+       // console.log(result);
         
 return result ;
     }
